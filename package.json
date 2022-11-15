@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "dev": "tsnd index.ts"
+    "dev": "tsnd --exit-child --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
