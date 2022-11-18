@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
+    "rootDir": "./",
     "outDir": "dist",
     "strict": true,
     "lib": ["esnext"],
     "esModuleInterop": true,
+    "paths": {
+      "@accounts/*": ["modules/accounts/*"],
+      "@clients/*": ["modules/clients/*"],
+      "@deliveryman/*": ["modules/deliveryman/*"],
+      "@prisma/*": ["database/*"]
+    }
   },
   "include": ["src/**/*"]
 }
