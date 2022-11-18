@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import { CreateClientUseCase } from "./CreateClientUseCase";
+import { CreateClientUseCase } from './CreateClientUseCase';
 
 export class CreateClientController {
   async handle(req: Request, res: Response) {
@@ -12,7 +12,7 @@ export class CreateClientController {
     // Executa o useCase
     const result = await createClientUseCase.execute({
       username,
-      password
+      password,
     });
 
     // Retorna os dados do useCase que foram cadastrados no banco via json
