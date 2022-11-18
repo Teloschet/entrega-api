@@ -1,6 +1,6 @@
-import { Router } from "express";
-import { AuthenticateClientController } from "./modules/accounts/useCases/authenticateClient/AuthenticateClientController";
-import { CreateClientController } from "./modules/clients/useCases/createClient/CreateClientController";
+import { Router } from 'express';
+import { AuthenticateClientController } from '@accounts/useCases/authenticateClient/AuthenticateClientController';
+import { CreateClientController } from '@clients/useCases/createClient/CreateClientController';
 
 const routes = Router();
 
