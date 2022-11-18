@@ -1,4 +1,4 @@
-export interface IAuthenticateClient {
+export interface ICreateDeliveryman {
   username: string;
   password: string;
 }
