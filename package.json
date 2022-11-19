@@ -8,7 +8,10 @@
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
     "build": "tsc",
-    "test": "cross-env NODE_ENV=test jest --no-cache --runInBand"
+    "test": "cross-env NODE_ENV=test jest --no-cache --runInBand",
+    "studio": "yarn prisma studio",
+    "migrate": "yarn prisma migrate dev",
+    "generate": "yarn prisma generate"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
