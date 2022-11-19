@@ -1,7 +1,7 @@
 import { hash } from 'bcrypt';
 
 import { prisma } from '@prisma/prismaClient';
-import { ICreateClient } from '../../interfaces/ICreateClient';
+import { ICreateClient } from '@clients/interfaces/ICreateClient';
 
 export class CreateClientUseCase {
   async execute({ password, username }: ICreateClient) {
