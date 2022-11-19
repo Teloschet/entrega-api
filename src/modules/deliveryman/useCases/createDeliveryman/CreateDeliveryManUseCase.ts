@@ -1,4 +1,4 @@
-import { ICreateDeliveryman } from '../../interfaces/ICreateDeliveryman';
+import { ICreateDeliveryman } from '@deliveryman/interfaces/ICreateDeliveryman';
 
 import { prisma } from '@prisma/prismaClient';
 
