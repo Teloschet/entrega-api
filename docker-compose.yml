@@ -1,15 +1,44 @@
-version: '3.1'
+version: "3.9"
 services:
-  database:
-    image: postgres
-    container_name: database_entrega
-    restart: always
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    hostname: postgres
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=hamachi123
-      - POSTGRES_DB=entrega
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: a132s$f14
+      POSTGRES_DB: entrega
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    depends_on:
+      - postgres
+    ports:
+      - "15432:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: telos@teloschet.com
+      PGADMIN_DEFAULT_PASSWORD: telos123
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    restart: always
+
+  prisma-postgres-api:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prisma-postgres-api
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    restart: always
 
   app:
     build: .
@@ -19,7 +48,7 @@ services:
       - 5000:5000
     volumes:
       - .:/usr/app
-    links:
-      - database
-    depends_on:
-      - database
+
+volumes:
+  postgres-data:
+  pgadmin-data:
