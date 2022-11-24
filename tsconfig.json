@@ -11,7 +11,9 @@
       "@accounts/*": ["modules/accounts/*"],
       "@clients/*": ["modules/clients/*"],
       "@deliveryman/*": ["modules/deliveryman/*"],
-      "@prisma/*": ["database/*"]
+      "@prisma/*": ["database/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@server/*": ["/*"]
     }
   },
   "include": ["src/**/*"]
