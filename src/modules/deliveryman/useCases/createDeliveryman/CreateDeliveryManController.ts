@@ -1,8 +1,8 @@
-import { IExpress } from '../../interfaces/IExpress';
+import { Request, Response } from 'express';
 import { CreateDeliveryManUseCase } from './CreateDeliveryManUseCase';
 
 export class CreateDeliveryManController {
-  async handle({ req, res }: IExpress) {
+  async handle(req: Request, res: Response) {
     // Pega as requisições da rota
     const { username, password } = req.body;
 
