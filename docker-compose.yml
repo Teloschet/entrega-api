@@ -1,18 +1,17 @@
 version: "3.9"
 services:
   postgres:
-    image: postgres:latest
+    image: postgres
     container_name: postgres
-    hostname: postgres
     ports:
       - 5432:5432
     environment:
       POSTGRES_USER: docker
       POSTGRES_PASSWORD: a132s$f14
       POSTGRES_DB: entrega
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
     restart: always
+    volumes:
+      - pgdata:/data/postgres
 
   pgadmin:
     image: dpage/pgadmin4
@@ -24,8 +23,6 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: telos@teloschet.com
       PGADMIN_DEFAULT_PASSWORD: telos123
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
     restart: always
 
   prisma-postgres-api:
@@ -48,7 +45,9 @@ services:
       - 5000:5000
     volumes:
       - .:/usr/app
+    depends_on:
+      - postgres
 
 volumes:
-  postgres-data:
-  pgadmin-data:
+  pgdata:
+    driver: local
