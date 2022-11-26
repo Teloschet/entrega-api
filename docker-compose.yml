@@ -1,53 +1,59 @@
-version: "3.9"
+version: '3.8'
+
 services:
-  postgres:
+  database:
     image: postgres
-    container_name: postgres
+    container_name: database_entrega
+    restart: always
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: docker
-      POSTGRES_PASSWORD: a132s$f14
-      POSTGRES_DB: entrega
-    restart: always
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=d41d8cd98f00b204
+      - POSTGRES_DB=entrega
     volumes:
       - pgdata:/data/postgres
 
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
-    depends_on:
-      - postgres
+    restart: always
     ports:
-      - "15432:80"
+      - 15432:80
     environment:
-      PGADMIN_DEFAULT_EMAIL: telos@teloschet.com
-      PGADMIN_DEFAULT_PASSWORD: telos123
-    restart: always
-
-  prisma-postgres-api:
-    stdin_open: true
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: prisma-postgres-api
+      - PGADMIN_DEFAULT_EMAIL=telos@teloschet.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin1234
     depends_on:
-      - postgres
-    ports:
-      - "3000:3000"
+      - database
+
+
+  redis:
+    image: redis:alpine
+    container_name: redis_spa
     restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
 
   app:
     build: .
-    container_name: entrega
+    container_name: spa
     restart: always
     ports:
       - 5000:5000
     volumes:
       - .:/usr/app
+    links:
+      - database
+      - redis
     depends_on:
-      - postgres
+      - database
+      - redis
 
 volumes:
   pgdata:
+    driver: local
+  cache:
     driver: local
