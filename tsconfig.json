@@ -11,6 +11,7 @@
       "@accounts/*": ["modules/accounts/*"],
       "@clients/*": ["modules/clients/*"],
       "@deliveryman/*": ["modules/deliveryman/*"],
+      "@deliveries/*": ["modules/deliveries/*"],
       "@prisma/*": ["database/*"],
       "@middlewares/*": ["middlewares/*"],
       "@server/*": ["/*"]
