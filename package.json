@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "author": "Telos <telos@teloschet.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Teloschet/entrega-api.git"
+  },
+  "engines": {
+    "node": ">=16.x"
+  },
   "scripts": {
     "dev": "tsnd --exit-child --transpile-only -r tsconfig-paths/register --ignore-watch node_modules -r dotenv/config index.ts",
     "lint": "eslint . --ext .ts",
