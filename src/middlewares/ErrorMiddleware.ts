@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IError } from 'interfaces/IError';
+import { NextFunction, Request, Response } from 'express';
 
-export const ErrorMiddleware = ({ err, req, res, next }: IError) => {
+export const ErrorMiddleware = (err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {
     return res.status(400).json({
       message: err.message,
