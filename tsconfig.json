@@ -7,6 +7,7 @@
     "strict": true,
     "lib": ["esnext"],
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "paths": {
       "@accounts/*": ["modules/accounts/*"],
       "@clients/*": ["modules/clients/*"],
@@ -14,7 +15,8 @@
       "@deliveries/*": ["modules/deliveries/*"],
       "@prisma/*": ["database/*"],
       "@middlewares/*": ["middlewares/*"],
-      "@server/*": ["/*"]
+      "@server/*": ["/*"],
+      "@docs/*": ["docs/*"]
     }
   },
   "include": ["src/**/*"]
