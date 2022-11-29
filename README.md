@@ -1,9 +1,9 @@
 <p align="center">
 <img align="center" src="https://i.imgur.com/D6N2baN.png" width="150" height="150" alt="telos"><br><br>
 <img src="https://travis-ci.org/laravel/framework.svg">
-<img src="https://img.shields.io/packagist/dt/Teloschet/telos">
-<img src="https://img.shields.io/packagist/v/Teloschet/telos">
-<img src="https://img.shields.io/packagist/l/Teloschet/telos">
+<img src="https://img.shields.io/packagist/dt/Teloschet/entrega-api">
+<img src="https://img.shields.io/packagist/v/Teloschet/entrega-api">
+<img src="https://img.shields.io/packagist/l/Teloschet/entrega-api">
 </p>
 
 # Entrega-API
