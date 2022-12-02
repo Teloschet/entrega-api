@@ -1,10 +1,11 @@
 import { Router } from 'express';
+import { celebrate, Joi, Segments } from 'celebrate';
 
 import { AuthenticateClientController } from '@accounts/useCases/authenticateClient/AuthenticateClientController';
 import { CreateClientController } from '@clients/useCases/createClient/CreateClientController';
 import { CreateDeliveryManController } from '@deliveryman/useCases/createDeliveryman/CreateDeliveryManController';
 import { AuthenticateDeliveryManController } from '@accounts/useCases/authenticateDeliveryman/AuthenticateDeliveryManController';
-import { CreateDeliveryController } from 'modules/deliveries/useCases/createDelivery/CreateDeliveryController';
+import { CreateDeliveryController } from '@deliveries/useCases/createDelivery/CreateDeliveryController';
 import { ensureAuthenticateClient } from '@middlewares/ensureAuthenticateClient';
 import { FindAllWithoutEndDateController } from '@deliveries/useCases/findAllWithoutEndDate/FindAllWithoutEndDateController';
 import { ensureAuthenticateDeliveryman } from '@middlewares/ensureAuthenticateDeliveryman';
@@ -24,8 +25,44 @@ const updateDeliverymanController = new UpdateDeliverymanController();
 const findAllDeliveriesClient = new FindAllDeliveriesController();
 const findAllDeliveriesDeliveryman = new FindAllDeliveriesDeliverymanController();
 
-routes.post('/client/authenticate', authenticateClientController.handle);
-routes.post('/deliveryman/authenticate', authenticateDeliveryManController.handle);
+routes.post(
+  '/client/authenticate',
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().required().messages({
+        'string.base': `"email" deve ser uma string`,
+        'string.empty': `"email" não pode ser um campo vazio`,
+        'any.required': `"email" é um campo requerido`,
+      }),
+      password: Joi.string().required().messages({
+        'string.base': `"password" deve ser uma string`,
+        'string.empty': `"password" não pode ser um campo vazio`,
+        'string.min': `"password" deve ter no mínimo 8 caracteres`,
+        'any.required': `"password" é um campo requerido`,
+      }),
+    },
+  }),
+  authenticateClientController.handle,
+);
+routes.post(
+  '/deliveryman/authenticate',
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().required().messages({
+        'string.base': `"email" deve ser uma string`,
+        'string.empty': `"email" não pode ser um campo vazio`,
+        'any.required': `"email" é um campo requerido`,
+      }),
+      password: Joi.string().required().messages({
+        'string.base': `"password" deve ser uma string`,
+        'string.empty': `"password" não pode ser um campo vazio`,
+        'string.min': `"password" deve ter no mínimo 8 caracteres`,
+        'any.required': `"password" é um campo requerido`,
+      }),
+    },
+  }),
+  authenticateDeliveryManController.handle,
+);
 
 routes.post('/client/', createClientController.handle);
 routes.post('/deliveryman', createDeliveryManController.handle);
