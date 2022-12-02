@@ -26,17 +26,6 @@ services:
     depends_on:
       - database
 
-
-  redis:
-    image: redis:alpine
-    container_name: redis_spa
-    restart: always
-    ports:
-      - 6379:6379
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
-    volumes:
-      - cache:/data
-
   app:
     build: .
     container_name: spa
@@ -47,13 +36,9 @@ services:
       - .:/usr/app
     links:
       - database
-      - redis
     depends_on:
       - database
-      - redis
 
 volumes:
   pgdata:
-    driver: local
-  cache:
     driver: local
