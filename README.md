@@ -32,6 +32,7 @@ O Prisma é utilizado como ORM p/ auxiliar no cumprimento das regras de negócio
 * Express-async-errors
 * Morgan
 * Signale
+* Celebrate
 
 ### Banco de Dados
 * Prisma
