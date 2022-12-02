@@ -2,6 +2,7 @@ import 'express-async-errors';
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import { errors } from 'celebrate';
 // import swaggerUi from 'swagger-ui-express';
 
 import { ErrorMiddleware } from '@middlewares/ErrorMiddleware';
@@ -18,7 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev', { skip: () => process.env.NODE_ENV === 'test' }));
 // app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
 
-app.use(routes);
+app.use('/api/v1', routes);
+app.use(errors());
 app.use(ErrorMiddleware);
 
 export { app };
